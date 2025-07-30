@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/Ushaprasad143/Valentine-Day-DevOps-Project.git'
+                git branch: 'main', url: 'https://github.com/DurgaPrasadSonti/Valentine-Day-Project.git'
             }
         }
         
@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-                            sh "docker build -t durgaprasad49/valentine:v1 ."
+                            sh "docker build -t durgaprasad19/valentine:v1 ."
                     }
                 }
             }
@@ -46,7 +46,7 @@ pipeline {
             steps {
                script {
                     withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
-                            sh "docker push durgaprasad49/valentine:v1"
+                            sh "docker push durgaprasad19/valentine:v1"
                     }
                 }
             }
@@ -54,7 +54,7 @@ pipeline {
         
         stage('Deploy To container') {
             steps {
-                sh "docker run -d -p 8081:80 durgaprasad49/valentine:v1"
+                sh "docker run -d -p 8081:80 durgaprasad19/valentine:v1"
             }
         }
         
